@@ -25,5 +25,10 @@ def day1_a():
     print("day1_a = {}".format(find_highest_calories_amount(data)))
 
 
+def find_the_sum_of_top_three(elves_list):
+    return sum(sorted([sum(elve) for elve in elves_list], reverse=True)[0:3])
+
+
 def day1_b():
-    print("day1_b")
+    data = parse_day1_a()
+    print("day1_b = {}".format(find_the_sum_of_top_three(data)))
