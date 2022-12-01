@@ -1,6 +1,6 @@
-import solutions
+import day1
 
 if __name__ == '__main__':
-    solutions.day1_a()
-    solutions.day1_b()
+    day1.day1_a()
+    day1.day1_b()
 
