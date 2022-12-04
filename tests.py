@@ -1,6 +1,7 @@
 import day1
 import day2
 import day3
+import day4
 import unittest
 from parameterized import parameterized
 
@@ -99,3 +100,35 @@ class Day3(unittest.TestCase):
     ])
     def test_calculate_sum_of_priorities_b(self, _, data, expected):
         self.assertEqual(expected, day3.calculate_sum_of_priorities_b(data))
+
+
+class Day4(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", (
+            ((2, 4), (6, 8)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((2, 8), (3, 7)),
+            ((6, 6), (4, 6)),
+            ((2, 6), (4, 8))
+        ), 2),
+        ("day_4a",
+         day4.parse_day4_a(), 538)
+    ])
+    def test_count_ranges_fully_overlapping(self, _, data, expected):
+        self.assertEqual(expected, day4.count_ranges_fully_overlapping(data))
+
+    @parameterized.expand([
+        ("example 1", (
+            ((2, 4), (6, 8)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((2, 8), (3, 7)),
+            ((6, 6), (4, 6)),
+            ((2, 6), (4, 8))
+        ), 4),
+        ("day_4b",
+         day4.parse_day4_a(), 792)
+    ])
+    def test_count_ranges_overlapping(self, _, data, expected):
+        self.assertEqual(expected, day4.count_ranges_overlapping(data))
