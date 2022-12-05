@@ -2,6 +2,7 @@ import day1
 import day2
 import day3
 import day4
+import day5
 import unittest
 from parameterized import parameterized
 
@@ -132,3 +133,51 @@ class Day4(unittest.TestCase):
     ])
     def test_count_ranges_overlapping(self, _, data, expected):
         self.assertEqual(expected, day4.count_ranges_overlapping(data))
+
+
+class Day5(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", (
+                (
+                    [
+                        ['Z', 'N'],
+                        ['M', 'C', 'D'],
+                        ['P']
+                    ],
+                    (
+                            # (amount, from, to)
+                            (1, 2, 1),
+                            (3, 1, 3),
+                            (2, 2, 1),
+                            (1, 1, 2)
+                    )
+                )
+        ), "CMZ"),
+        ("day_5a",
+         day5.parse_day5_a(), "RLFNRTNFB")
+    ])
+    def test_find_top_crates(self, _, data, expected):
+        self.assertEqual(expected, day5.find_top_crates(data))
+
+    @parameterized.expand([
+        ("example 1", (
+                (
+                    [
+                        ['Z', 'N'],
+                        ['M', 'C', 'D'],
+                        ['P']
+                    ],
+                    (
+                            # (amount, from, to)
+                            (1, 2, 1),
+                            (3, 1, 3),
+                            (2, 2, 1),
+                            (1, 1, 2)
+                    )
+                )
+        ), "MCD"),
+        ("day_5b",
+         day5.parse_day5_a(), "MHQTLJRLB")
+    ])
+    def test_find_top_crates_FIFO(self, _, data, expected):
+        self.assertEqual(expected, day5.find_top_crates_fifo(data))
