@@ -3,6 +3,7 @@ import day2
 import day3
 import day4
 import day5
+import day6
 import unittest
 from parameterized import parameterized
 
@@ -181,3 +182,28 @@ class Day5(unittest.TestCase):
     ])
     def test_find_top_crates_FIFO(self, _, data, expected):
         self.assertEqual(expected, day5.find_top_crates_fifo(data))
+
+
+class Day6(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", "bvwbjplbgvbhsrlpgdmjqwftvncz", 5),
+        ("example 2", "nppdvjthqldpwncqszvftbrmjlhg", 6),
+        ("example 3", "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 10),
+        ("example 4", "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 11),
+        ("day_6a",
+         day6.parse_day6_a(), 1262)
+    ])
+    def test_count_chars_needed_to_detect_marker(self, _, data, expected):
+        self.assertEqual(expected, day6.count_chars_needed_to_detect_marker(data, 4))
+
+    @parameterized.expand([
+        ("example 1", "mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19),
+        ("example 2", "bvwbjplbgvbhsrlpgdmjqwftvncz", 23),
+        ("example 3", "nppdvjthqldpwncqszvftbrmjlhg", 23),
+        ("example 4", "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29),
+        ("example 5", "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26),
+        # ("day_6b",
+        #  day6.parse_day6_a(), 1262)
+    ])
+    def test_count_chars_needed_to_detect_message(self, _, data, expected):
+        self.assertEqual(expected, day6.count_chars_needed_to_detect_marker(data, 14))

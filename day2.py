@@ -45,10 +45,10 @@ def calculate_total_score(data):
     return sum([match_points[x] + shape_points[x[1]] for x in data])
 
 
+
 def day2_a():
     data = parse_day2_a()
     print("day2_a = {}".format(calculate_total_score(data)))
-
 
 def calculate_total_score_v2(data):
     match_strategy = {
