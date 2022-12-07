@@ -4,6 +4,7 @@ import day3
 import day4
 import day5
 import day6
+import day7
 import unittest
 from parameterized import parameterized
 
@@ -207,3 +208,69 @@ class Day6(unittest.TestCase):
     ])
     def test_count_chars_needed_to_detect_message(self, _, data, expected):
         self.assertEqual(expected, day6.count_chars_needed_to_detect_marker(data, 14))
+
+
+class Day7(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", (
+            "$ cd /",
+            "$ ls",
+            "dir a",
+            "14848514 b.txt",
+            "8504156 c.dat",
+            "dir d",
+            "$ cd a",
+            "$ ls",
+            "dir e",
+            "29116 f",
+            "2557 g",
+            "62596 h.lst",
+            "$ cd e",
+            "$ ls",
+            "584 i",
+            "$ cd ..",
+            "$ cd ..",
+            "$ cd d",
+            "$ ls",
+            "4060174 j",
+            "8033020 d.log",
+            "5626152 d.ext",
+            "7214296 k"
+        ), 95437),
+        ("day_7a",
+         day7.parse_day7_a(), 1915606)
+    ])
+    def test_sum_of_dir_sizes(self, _, data, expected):
+        self.assertEqual(expected, day7.sum_of_dir_sizes(data))
+
+    @parameterized.expand([
+        ("example 1", (
+            "$ cd /",
+            "$ ls",
+            "dir a",
+            "14848514 b.txt",
+            "8504156 c.dat",
+            "dir d",
+            "$ cd a",
+            "$ ls",
+            "dir e",
+            "29116 f",
+            "2557 g",
+            "62596 h.lst",
+            "$ cd e",
+            "$ ls",
+            "584 i",
+            "$ cd ..",
+            "$ cd ..",
+            "$ cd d",
+            "$ ls",
+            "4060174 j",
+            "8033020 d.log",
+            "5626152 d.ext",
+            "7214296 k"
+        ), 24933642),
+        ("day_7b",
+         day7.parse_day7_a(), 5025657)
+    ])
+    def test_find_size_of_smallest_dir_to_remove(self, _, data, expected):
+        self.assertEqual(expected, day7.find_size_of_smallest_dir_to_remove(data))
