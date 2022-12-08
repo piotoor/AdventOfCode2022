@@ -5,6 +5,7 @@ import day4
 import day5
 import day6
 import day7
+import day8
 import unittest
 from parameterized import parameterized
 
@@ -274,3 +275,33 @@ class Day7(unittest.TestCase):
     ])
     def test_find_size_of_smallest_dir_to_remove(self, _, data, expected):
         self.assertEqual(expected, day7.find_size_of_smallest_dir_to_remove(data))
+
+
+class Day8(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", (
+                [3, 0, 3, 7, 3],
+                [2, 5, 5, 1, 2],
+                [6, 5, 3, 3, 2],
+                [3, 3, 5, 4, 9],
+                [3, 5, 3, 9, 0]
+        ), 21),
+        ("day_8a",
+         day8.parse_day8_a(), 1805)
+    ])
+    def test_count_visible_trees(self, _, data, expected):
+        self.assertEqual(expected, day8.count_visible_trees(data))
+
+    @parameterized.expand([
+        ("example 1", (
+                [3, 0, 3, 7, 3],
+                [2, 5, 5, 1, 2],
+                [6, 5, 3, 3, 2],
+                [3, 3, 5, 4, 9],
+                [3, 5, 3, 9, 0]
+        ), 8),
+        ("day_8b",
+         day8.parse_day8_a(), 444528)
+    ])
+    def test_find_highest_scenic_score(self, _, data, expected):
+        self.assertEqual(expected, day8.find_highest_scenic_score(data))
