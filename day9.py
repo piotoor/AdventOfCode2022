@@ -10,9 +10,9 @@ def parse_day9_a():
     return data
 
 
-NO_OF_KNOTS = 10
+NO_OF_KNOTS_A = 2
+NO_OF_KNOTS_B = 10
 H = 0
-T = NO_OF_KNOTS - 1
 X = 0
 Y = 1
 
@@ -34,73 +34,51 @@ def move_tail(h, t):
     dx = h[X] - t[X]
     dy = h[Y] - t[Y]
 
-    if dx == -2:
-        t[X] -= 1
+    if abs(dx) == 2:
+        t[X] += math.copysign(1, dx)
         t[Y] += math.copysign(1, dy) if dy != 0 else 0
-    elif dx == 2:
-        t[X] += 1
-        t[Y] += math.copysign(1, dy) if dy != 0 else 0
-    elif dy == -2:
-        t[Y] -= 1
-        t[X] += math.copysign(1, dx) if dx != 0 else 0
-    elif dy == 2:
-        t[Y] += 1
+    elif abs(dy) == 2:
+        t[Y] += math.copysign(1, dy)
         t[X] += math.copysign(1, dx) if dx != 0 else 0
 
     return t
 
 
-def count_places_visited_by_tail(data):
-    visited = set()
-
-    h_pos = [0, 0]
-    t_pos = [0, 0]
+def count_places_visited_by_tail(data, num_of_knots):
+    visited = {(0, 0)}
+    knots = [[0, 0] for _ in range(num_of_knots)]
 
     for d, n in data:
         for i in range(n):
-            h_pos = move_head(h_pos, d)
-            t_pos = move_tail(h_pos, t_pos)
+            knots[H] = move_head(knots[H], d)
+            for j in range(1, num_of_knots):
+                knots[j] = move_tail(knots[j - 1], knots[j])
 
-            visited.add(tuple(t_pos))
+            visited.add(tuple(knots[-1]))
 
     return len(visited)
 
 
 def day9_a():
     data = parse_day9_a()
-    print("day9_a = {}".format(count_places_visited_by_tail(data)))
+    print("day9_a = {}".format(count_places_visited_by_tail(data, NO_OF_KNOTS_A)))
 
 
-def print_knots(data):
-    board = [["." for _ in range(40)] for _ in range(40)]
-    for i in range(len(data)):
-        if i == 0:
-            c = 'H'
-        elif i == 9:
-            c = 'T'
-        else:
-            c = str(i)
-        board[data[i][1] + 20][data[i][0] + 20] = c
-
-    for x in board:
-        print(x)
-
-
-def count_places_visited_by_tail_10(data):
-    visited = {(0, 0)}
-    knots = [[0, 0] for _ in range(NO_OF_KNOTS)]
-
-    for d, n in data:
-        for i in range(n):
-            knots[H] = move_head(knots[H], d)
-            for j in range(1, NO_OF_KNOTS):
-                knots[j] = move_tail(knots[j - 1], knots[j])
-
-            visited.add(tuple(knots[T]))
-
-    return len(visited)
+# def print_knots(data):
+#     board = [["." for _ in range(40)] for _ in range(40)]
+#     for i in range(len(data)):
+#         if i == 0:
+#             c = 'H'
+#         elif i == 9:
+#             c = 'T'
+#         else:
+#             c = str(i)
+#         board[data[i][1] + 20][data[i][0] + 20] = c
+#
+#     for x in board:
+#         print(x)
 
 
 def day9_b():
     data = parse_day9_a()
-    print("day9_b = {}".format(count_places_visited_by_tail_10(data)))
+    print("day9_b = {}".format(count_places_visited_by_tail(data, NO_OF_KNOTS_B)))
