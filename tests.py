@@ -6,6 +6,7 @@ import day5
 import day6
 import day7
 import day8
+import day9
 import unittest
 from parameterized import parameterized
 
@@ -305,3 +306,49 @@ class Day8(unittest.TestCase):
     ])
     def test_find_highest_scenic_score(self, _, data, expected):
         self.assertEqual(expected, day8.find_highest_scenic_score(data))
+
+
+class Day9(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", (
+            ("R", 4),
+            ("U", 4),
+            ("L", 3),
+            ("D", 1),
+            ("R", 4),
+            ("D", 1),
+            ("L", 5),
+            ("R", 2)
+        ), 13),
+        ("day_9a",
+         day9.parse_day9_a(), 5779)
+    ])
+    def test_count_places_visited_by_tail(self, _, data, expected):
+        self.assertEqual(expected, day9.count_places_visited_by_tail(data))
+
+    @parameterized.expand([
+        ("example 1", (
+            ("R", 5),
+            ("U", 8),
+            ("L", 8),
+            ("D", 3),
+            ("R", 17),
+            ("D", 10),
+            ("L", 25),
+            ("U", 20)
+        ), 36),
+        ("example 2", (
+                ("R", 4),
+                ("U", 4),
+                ("L", 3),
+                ("D", 1),
+                ("R", 4),
+                ("D", 1),
+                ("L", 5),
+                ("R", 2)
+        ), 1),
+        ("day_9b",
+         day9.parse_day9_a(), 2331)
+    ])
+    def test_count_places_visited_by_tail_10(self, _, data, expected):
+        self.assertEqual(expected, day9.count_places_visited_by_tail_10(data))
