@@ -8,6 +8,7 @@ import day7
 import day8
 import day9
 import day10
+import day11
 
 if __name__ == '__main__':
     # day1.day1_a()
@@ -28,5 +29,7 @@ if __name__ == '__main__':
     # day8.day8_b()
     # day9.day9_a()
     # day9.day9_b()
-    day10.day10_a()
-    day10.day10_b()
+    # day10.day10_a()
+    # day10.day10_b()
+    day11.day11_a()
+    day11.day11_b()
