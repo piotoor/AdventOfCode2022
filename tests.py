@@ -682,17 +682,17 @@ class Day11(unittest.TestCase):
             day11.Monkey(1, deque([54, 65, 75, 74]), ("+", 6), (19, 0, 2)),
             day11.Monkey(2, deque([79, 60, 97]), ("*", "old"), (13, 3, 1)),
             day11.Monkey(3, deque([74]), ("+", 3), (17, 1, 0)),
-        ], 20, 3, 0, 10605),
+        ], 20, 3, 10605),
         ("day_11a",
-         day11.parse_day11_a(), 20, 3, 0, 182293),
+         day11.parse_day11_a(), 20, 3, 182293),
         ("example 2", [
             day11.Monkey(0, deque([79, 98]), ("*", 19), (23, 3, 2)),
             day11.Monkey(1, deque([54, 65, 75, 74]), ("+", 6), (19, 0, 2)),
             day11.Monkey(2, deque([79, 60, 97]), ("*", "old"), (13, 3, 1)),
             day11.Monkey(3, deque([74]), ("+", 3), (17, 1, 0)),
-        ], 10000, 1, 23 * 19 * 17 * 13, 2713310158),
+        ], 10000, 23 * 19 * 17 * 13, 2713310158),
         ("day_11b",
-         day11.parse_day11_a(), 10000, 1, 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19,  54832778815)
+         day11.parse_day11_a(), 10000, 2 * 3 * 5 * 7 * 11 * 13 * 17 * 19,  54832778815)
     ])
-    def test_calc_level_of_monkey_business(self, _, data, num_of_rounds, worry_divisor, modulo, expected):
-        self.assertEqual(expected, day11.calc_level_of_monkey_business(data, num_of_rounds, worry_divisor, modulo))
+    def test_calc_level_of_monkey_business(self, _, data, num_of_rounds, worry_divisor, expected):
+        self.assertEqual(expected, day11.calc_level_of_monkey_business(data, num_of_rounds, worry_divisor))

@@ -47,7 +47,7 @@ def parse_day11_a():
     return data
 
 
-def calc_level_of_monkey_business(monkeys, num_of_rounds, worry_divisor, modulo):
+def calc_level_of_monkey_business(monkeys, num_of_rounds, worry_divisor):
     for r in range(num_of_rounds):
         for m in monkeys:
             while not len(m.items) == 0:
@@ -64,10 +64,10 @@ def calc_level_of_monkey_business(monkeys, num_of_rounds, worry_divisor, modulo)
                     front += arg
 
                 # simplification
-                if worry_divisor == 3:
+                if num_of_rounds == 20:
                     front //= worry_divisor
                 else:
-                    front %= modulo
+                    front %= worry_divisor
 
                 # test & throw
                 if front % m.test[0] == 0:
@@ -82,9 +82,9 @@ def calc_level_of_monkey_business(monkeys, num_of_rounds, worry_divisor, modulo)
 
 def day11_a():
     data = parse_day11_a()
-    print("day11_a = {}".format(calc_level_of_monkey_business(data, num_of_rounds=20, worry_divisor=3, modulo=0)))
+    print("day11_a = {}".format(calc_level_of_monkey_business(data, num_of_rounds=20, worry_divisor=3)))
 
 
 def day11_b():
     data = parse_day11_a()
-    print("day11_b = {}".format(calc_level_of_monkey_business(data, num_of_rounds=10000, worry_divisor=1, modulo=2*3*5*7*11*13*17*19)))
+    print("day11_b = {}".format(calc_level_of_monkey_business(data, num_of_rounds=10000, worry_divisor=2*3*5*7*11*13*17*19)))
