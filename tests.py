@@ -9,6 +9,7 @@ import day8
 import day9
 import day10
 import day11
+import day12
 import unittest
 from parameterized import parameterized
 from collections import deque
@@ -696,3 +697,42 @@ class Day11(unittest.TestCase):
     ])
     def test_calc_level_of_monkey_business(self, _, data, num_of_rounds, worry_divisor, expected):
         self.assertEqual(expected, day11.calc_level_of_monkey_business(data, num_of_rounds, worry_divisor))
+
+
+class Day11(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", [
+            [0, 0, 1, 16, 15, 14, 13, 12],
+            [0, 1, 2, 17, 24, 23, 23, 11],
+            [0, 2, 2, 18, 25, 25, 23, 10],
+            [0, 2, 2, 19, 20, 21, 22, 9],
+            [0, 1, 3, 4, 5, 6, 7, 8]
+        ], (0, 0), (2, 5), 31),
+        ("example 2", [
+            [0, 1, 2, 16, 15, 14, 13, 12],
+            [0, 1, 0, 17, 24, 23, 23, 11],
+            [0, 2, 1, 18, 25, 25, 23, 10],
+            [0, 2, 2, 19, 20, 21, 22, 9],
+            [0, 1, 3, 4, 5, 6, 7, 8]
+        ], (0, 0), (2, 5), 31),
+        ("day_12a",
+         day12.parse_day12_a()[0], day12.parse_day12_a()[1], day12.parse_day12_a()[2], 391)
+    ])
+    def test_find_shortest_path(self, _, data, src, trgt, expected):
+        self.assertEqual(expected, day12.find_shortest_path(data, src, trgt))
+
+
+    @parameterized.expand([
+        ("example 1", [
+            [0, 0, 1, 16, 15, 14, 13, 12],
+            [0, 1, 2, 17, 24, 23, 23, 11],
+            [0, 2, 2, 18, 25, 25, 23, 10],
+            [0, 2, 2, 19, 20, 21, 22, 9],
+            [0, 1, 3, 4, 5, 6, 7, 8]
+        ], (2, 5), 29),
+
+        ("day_12b",
+         day12.parse_day12_a()[0], day12.parse_day12_a()[2], 386)
+    ])
+    def test_find_shortest_path(self, _, data, src, expected):
+        self.assertEqual(expected, day12.find_shortest_path_from_any_a(data, src))
