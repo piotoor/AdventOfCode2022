@@ -10,6 +10,7 @@ import day9
 import day10
 import day11
 import day12
+import day13
 import unittest
 from parameterized import parameterized
 from collections import deque
@@ -699,7 +700,7 @@ class Day11(unittest.TestCase):
         self.assertEqual(expected, day11.calc_level_of_monkey_business(data, num_of_rounds, worry_divisor))
 
 
-class Day11(unittest.TestCase):
+class Day12(unittest.TestCase):
     @parameterized.expand([
         ("example 1", [
             [0, 0, 1, 16, 15, 14, 13, 12],
@@ -721,7 +722,6 @@ class Day11(unittest.TestCase):
     def test_find_shortest_path(self, _, data, src, trgt, expected):
         self.assertEqual(expected, day12.find_shortest_path(data, src, trgt))
 
-
     @parameterized.expand([
         ("example 1", [
             [0, 0, 1, 16, 15, 14, 13, 12],
@@ -736,3 +736,136 @@ class Day11(unittest.TestCase):
     ])
     def test_find_shortest_path(self, _, data, src, expected):
         self.assertEqual(expected, day12.find_shortest_path_from_any_a(data, src))
+
+
+class Day13(unittest.TestCase):
+    @parameterized.expand([
+        ("own 1",
+            [1, 1, 3, 1, 1],
+            [1, 1, 5, 1, 1],
+            -1),
+        ("own 2",
+            [1],
+            [1],
+            0),
+        ("own 3",
+            [2],
+            [1],
+            1),
+        ("own 4",
+            [1, [1]],
+            [1, 1],
+            0),
+        ("own 5",
+         [1, 1],
+         [1, [1]],
+         0),
+        ("own 6",
+         [1, [1]],
+         [1],
+         1),
+        ("own 7",
+         [1, [1, 2, 3, 4]],
+         [1, [1, 2, 3, [4]]],
+         0),
+    ])
+    def test_compare(self, _, a, b, expected):
+        self.assertEqual(expected, day13.compare(a, b))
+
+    @parameterized.expand([
+        ("example 1", [
+            [
+                [1, 1, 3, 1, 1],
+                [1, 1, 5, 1, 1]
+            ],
+
+            [
+                [[1], [2, 3, 4]],
+                [[1], 4]
+            ],
+
+            [
+                [9],
+                [[8, 7, 6]]
+            ],
+
+            [
+                [[4, 4], 4, 4],
+                [[4, 4], 4, 4, 4]
+            ],
+
+            [
+                [7, 7, 7, 7],
+                [7, 7, 7]
+            ],
+
+            [
+                [],
+                [3]
+            ],
+
+            [
+                [[[]]],
+                [[]]
+            ],
+
+            [
+                [1, [2, [3, [4, [5, 6, 7]]]], 8, 9],
+                [1, [2, [3, [4, [5, 6, 0]]]], 8, 9]
+            ]
+        ], 13),
+
+        ("day_13a",
+         day13.parse_day13_a(), 5003)
+    ])
+    def test_sum_of_indices(self, _, data, expected):
+        self.assertEqual(expected, day13.sum_of_indices(data))
+
+    @parameterized.expand([
+        ("example 1", [
+            [
+                [1, 1, 3, 1, 1],
+                [1, 1, 5, 1, 1]
+            ],
+
+            [
+                [[1], [2, 3, 4]],
+                [[1], 4]
+            ],
+
+            [
+                [9],
+                [[8, 7, 6]]
+            ],
+
+            [
+                [[4, 4], 4, 4],
+                [[4, 4], 4, 4, 4]
+            ],
+
+            [
+                [7, 7, 7, 7],
+                [7, 7, 7]
+            ],
+
+            [
+                [],
+                [3]
+            ],
+
+            [
+                [[[]]],
+                [[]]
+            ],
+
+            [
+                [1, [2, [3, [4, [5, 6, 7]]]], 8, 9],
+                [1, [2, [3, [4, [5, 6, 0]]]], 8, 9]
+            ]
+        ], 140),
+
+        ("day_13b",
+         day13.parse_day13_a(), 20280)
+    ])
+    def test_sum_of_indices(self, _, data, expected):
+        self.assertEqual(expected, day13.find_decoder_key(data))
