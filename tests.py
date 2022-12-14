@@ -11,6 +11,7 @@ import day10
 import day11
 import day12
 import day13
+import day14
 import unittest
 from parameterized import parameterized
 from collections import deque
@@ -869,3 +870,25 @@ class Day13(unittest.TestCase):
     ])
     def test_sum_of_indices(self, _, data, expected):
         self.assertEqual(expected, day13.find_decoder_key(data))
+
+
+class Day14(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", [
+            [(498, 4), (498, 6), (496, 6)],
+            [(503, 4), (502, 4), (502, 9), (494, 9)]
+        ], 24),
+        ("day_14a", day14.parse_day14_a(), 892)
+    ])
+    def test_count_units_of_sand_until_fall(self, _, data, expected):
+        self.assertEqual(expected, day14.count_units_of_sand_until_fall(data))
+
+    @parameterized.expand([
+        ("example 1", [
+            [(498, 4), (498, 6), (496, 6)],
+            [(503, 4), (502, 4), (502, 9), (494, 9)]
+        ], 93),
+        ("day_14b", day14.parse_day14_a(), 27155)
+    ])
+    def test_count_units_of_sand_untin_blockage(self, _, data, expected):
+        self.assertEqual(expected, day14.count_units_of_sand_until_blockage(data))
