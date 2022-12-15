@@ -12,6 +12,7 @@ import day11
 import day12
 import day13
 import day14
+import day15
 import unittest
 from parameterized import parameterized
 from collections import deque
@@ -892,3 +893,55 @@ class Day14(unittest.TestCase):
     ])
     def test_count_units_of_sand_untin_blockage(self, _, data, expected):
         self.assertEqual(expected, day14.count_units_of_sand_until_blockage(data))
+
+
+class Day15(unittest.TestCase):
+    @parameterized.expand([
+        ("example 1", [
+            ((2, 18), (-2, 15)),
+            ((9, 16), (10, 16)),
+            ((13, 2), (15, 3)),
+            ((12, 14), (10, 16)),
+
+            ((10, 20), (10, 16)),
+            ((14, 17), (10, 16)),
+            ((8, 7), (2, 10)),
+            ((2, 0), (2, 10)),
+
+            ((0, 11), (2, 10)),
+            ((20, 14), (25, 17)),
+            ((17, 20), (21, 22)),
+            ((16, 7), (15, 3)),
+
+            ((14, 3), (15, 3)),
+            ((20, 1), (15, 3)),
+        ], 10, 26),
+        ("day_15a", day15.parse_day15_a(), 2000000, 5832528)
+    ])
+    def test_count_positions_without_beacon(self, _, data, row, expected):
+        self.assertEqual(expected, day15.count_positions_without_beacon(data, row))
+
+    @parameterized.expand([
+        ("example 1", [
+            ((2, 18), (-2, 15)),
+            ((9, 16), (10, 16)),
+            ((13, 2), (15, 3)),
+            ((12, 14), (10, 16)),
+
+            ((10, 20), (10, 16)),
+            ((14, 17), (10, 16)),
+            ((8, 7), (2, 10)),
+            ((2, 0), (2, 10)),
+
+            ((0, 11), (2, 10)),
+            ((20, 14), (25, 17)),
+            ((17, 20), (21, 22)),
+            ((16, 7), (15, 3)),
+
+            ((14, 3), (15, 3)),
+            ((20, 1), (15, 3)),
+        ], 20, 56000011),
+        ("day_15b", day15.parse_day15_a(), 4000000, 13360899249595)
+    ])
+    def test_tuning_frequency(self, _, data, bounds, expected):
+        self.assertEqual(expected, day15.tuning_frequency(data, bounds))
